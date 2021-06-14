@@ -12,19 +12,30 @@ public class RequestSubmission {
     // пользоватею
     protected long fied;
     String stend;
+    Connect connect;
+    FieldsView fieldsView;
     LinkedHashMap <Integer, Responseline> mapResponce = new LinkedHashMap <> ();
 
+    public void setConnect(Connect connect) {
+        this.connect = connect;
+    }
+
+    public void setFieldsView(FieldsView fieldsView) {
+        this.fieldsView = fieldsView;
+    }
+
     protected void presentingRequestScreen () throws SQLException, IOException, ClassNotFoundException {
-        Connect connect = new Connect ();
         stend = connect.databaseSelection ();
         mapResponce.putAll (connect.getMapResponce ());
-        FieldsView fieldsView = new FieldsView ();
+
         fied = fieldsView.view ();
 
         // вывод сервисной информации о запросе
         System.out.println ("БД стенда: " + stend);
         System.out.println ( "Время запроса: " + new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss").
                 format (Calendar.getInstance ().getTime ()) );
+
+        //два варианта вывода полей ответа пользователю из мапы с объектами, содержащими полную информацию по запросу
         if (fied == 1) {
             System.out.format ("%25s%25s%80s%35s%12s%60s%20s%40s%5s","Дата создания |", "Сист имя |", "Документ |",
                     "Глоб статус |", "СВР |", "Организация |", "Идентификатор БД |", "Глобальный идентификатор |", "\n");

@@ -5,10 +5,17 @@ import java.util.ArrayList;
 
 public class RequestStructure {
     // цель класса - создать итоговый запрос к БД
+
     protected String select;
+    Introducer intr;
+
+    public void setIntr (Introducer intr) {
+        this.intr = intr;
+    }
 
     //формирование итогового запроса к БД
     protected String quest () throws IOException {
+
         String sel1 = "select w.createdate \"Дата создания\", d.SYSTEMNAME \"Сист имя\", d.NAME \"Документ\",  " +
                 "g.DESCRIPTION \"Глоб статус\", g.systemname \"Сист имя глоб статуса\", o.SYSTEMNAME \"СВР\", " +
                 "o.NAME \"Организация\", w.docstateid \"Глоб стат\", r.localdocstateid \"Лок стат\", " +
@@ -20,7 +27,6 @@ public class RequestStructure {
         String sel3;
         String sel4 = " order by r.ROUTECONTEXTID";
 
-        Introducer intr = new Introducer();
         sel2 = intr.inputer ();
         ArrayList <String> list = new ArrayList <> (intr.getList ());
         sel3 = list.get(0);

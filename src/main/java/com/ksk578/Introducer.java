@@ -6,13 +6,24 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Introducer {
-    // цель класса - определить вид аргумента для отбора записей БД в запрос, получить данные для запроса,
-    // удалить дубли и выполнить проверки на корректность вводимых данных
-    // выбор параметра запроса
+    // цель класса - определить вид параметр для отбора записей  в БД, получить значения данного параметра,
+    // выполнить проверки на корректность вводимых данных м удалить дубли.
+
     protected int ident;
     protected String selectionParameter;
     ArrayList <String> list;
+    ValidatorArgumentGuid validatorArgumentGuid;
+    ValidatorArgumentIdDB validatorArgumentIdDB;
 
+    public void setValidatorArgumentGuid (ValidatorArgumentGuid validatorArgumentGuid) {
+        this.validatorArgumentGuid = validatorArgumentGuid;
+    }
+
+    public void setValidatorArgumentIdDB (ValidatorArgumentIdDB validatorArgumentIdDB) {
+        this.validatorArgumentIdDB = validatorArgumentIdDB;
+    }
+
+    // выбор параметра запроса
     protected String inputer () throws IOException {
         //выбор параметра отбора записей в БД
         System.out.println ("\nВыберите параметр поиска:\nguid - введите 1,\tИдентификатор БД - введите 2");
@@ -31,18 +42,15 @@ public class Introducer {
                 a++;
             }
         }
-        // получение значений выбранного парметра, валидация значений и удаление дублей.
+        // получение значений выбранного параметра, валидация значений и удаление дублей.
         if (ident == 1) {
             selectionParameter = " w.GLOBALDOCID in ('";
-            ValidatorArgumentGuid validatorArgumentGuid = new ValidatorArgumentGuid ();
             list = new ArrayList <> (validatorArgumentGuid.eliminationOfDuplicates (validatorArgumentGuid.populatingArgumentList ()));
         } else {
             selectionParameter = " r.ROUTECONTEXTID in ('";
-            ValidatorArgumentIdDB validatorArgumentIdDB = new ValidatorArgumentIdDB ();
             list = new ArrayList <> (validatorArgumentIdDB.eliminationOfDuplicates (validatorArgumentIdDB.populatingArgumentList ()));
         }
         return selectionParameter;
-        //return ident;
     }
     protected ArrayList <String> getList () {
         return list;

@@ -5,22 +5,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ValidatorArgumentFath {
-    //цель класса - вынести общие метод в родительский класс, при этом метод eliminationOfDuplicates не
-    // переопределяется в наследниках,метод populatingArgumentList требует переопределения в наследниках, т.к. разные
-    //принципы валидации значений.
+    //цель класса - получить значения параметра отбора записей в БД УФОС, выполнить их валидаци., удалить возможные дубли.
+    // Метод populatingArgumentList требует переопределения в наследниках, т.к. разные применяются
+    //принципы валидации значений параметра отбора данных в БД, метод eliminationOfDuplicates не переопределяется
+    // в наследниках, наследуется в оригинальном виде
 
-    //ввод аргумента в запрос к БД, метод требует переопределения в наследниках, приводится некоторая базовая часть реализации
+    //базовая, рабочая реализация метода по  вводу аргумента в запрос к БД,
+    // метод требует переопределения в наследниках, приводится некоторая базовая часть реализации
     protected ArrayList <String> populatingArgumentList () throws IOException {
         ArrayList <String> list = new ArrayList <> ();
+        System.out.println ("Введите аргумент");
         BufferedReader reader = new BufferedReader (new InputStreamReader (System.in));
         String argument = reader.readLine ();
         list.add (argument);
         if (list.size () == 0) {
-            System.out.println ("Аргумент не введен \nРабота программы завершена досрочно\nДо новых встреч!");
+            System.out.println ("Аргумент не введен \nРабота программы завершена досрочно\n");
             System.exit (1);
         }
         return list;

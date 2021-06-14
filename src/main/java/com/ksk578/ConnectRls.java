@@ -9,14 +9,26 @@ public class ConnectRls extends  ConnectStendFath {
     // масштабирование подключений - для подключения к новой площадке необходимо лишь добавить новый класс-наследник и
     // прописать его вызов в классе Connect
 
-    public LinkedHashMap <Integer, Responseline> connectBdUfos () throws SQLException, ClassNotFoundException, IOException {
-        final String url = "jdbc:postgresql://eb-tse-rls-poi-db.otr.ru:5432/tse_ufos_wl";
-        final  String username = "ufos";
-        final String password = "Postgres55";
-        LinkedHashMap <Integer,Responseline> mapResponce = new LinkedHashMap <> ();
-        mapResponce.putAll (super.connectBdUfos(url, username, password));
-        return mapResponce;
+    final String url;
+    final  String username;
+    final String password;
+    RequestStructure requestStructure;
 
+    // сеттер ввода значений переменных подключения из  ConnectStend.properties
+    public ConnectRls(String url, String username, String password) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
+    }
+
+    public void setRequestStructure (RequestStructure requestStructure) {
+        this.requestStructure = requestStructure;
+    }
+
+    //проксируем вызов метода к родительскому классу, дополняя его требуемыми аргументами
+    public LinkedHashMap <Integer, Responseline> connectBdUfos () throws SQLException, ClassNotFoundException, IOException {
+        LinkedHashMap <Integer,Responseline> mapResponce = new LinkedHashMap <> (super.connectBdUfos(url, username, password, requestStructure));
+        return mapResponce;
     }
 
 }

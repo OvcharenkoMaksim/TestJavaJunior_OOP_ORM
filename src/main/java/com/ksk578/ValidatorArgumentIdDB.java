@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ValidatorArgumentIdDB extends ValidatorArgumentFath {
-    //цель класса принять Идентификаторы БД в качестве аргумента запроса, выполнить валидацию вводимых значений и удалить
+    //цель класса - принять Идентификаторы БД в качестве прараметра запроса, выполнить валидацию вводимых значений и удалить
     // возможные дубли
 
     // ввод идентификаторов БД

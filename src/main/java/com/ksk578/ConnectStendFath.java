@@ -7,29 +7,30 @@ import java.util.LinkedHashMap;
 public class ConnectStendFath {
     // цель класса - вынести процесс подключения в отдельный севисный объект, выполнить подключение по подданым в метод
 // аргументам, полученный запрос сохранить в Map и вернуть мапу.
+// !!! Важно ссылку на бин объекта RequestStructure
+// необходимо подавать из объекта дочернего класса, т.к. иначе все ссылки нулевые.
 
     // подключаемся к БД выбранной площадки по поданным аргументам
-    public LinkedHashMap<Integer, Responseline> connectBdUfos (String url, String username, String password)
+    public LinkedHashMap<Integer, Responseline> connectBdUfos (String url, String username, String password, RequestStructure requestStructure)
             throws SQLException, ClassNotFoundException, IOException {
-        LinkedHashMap <Integer,Responseline> mapResponce = new LinkedHashMap <Integer,Responseline> ();
-        Class.forName ("org.postgresql.Driver");
+        LinkedHashMap <Integer,Responseline> mapResponce = new LinkedHashMap <> ();
 
+        // загрузка драйвера и выполнение подключения к БД
+        Class.forName ("org.postgresql.Driver");
         Connection con= DriverManager.getConnection (url, username, password);
         Statement stmt=con.createStatement ();
-        //контроль сбоя в подключении к БД
+
+        //контроль подключения к БД
         if (stmt != null){
             System.out.println("Выполнено подключение к БД");
         }
 
-        //получаем итоговый запрос к БД
-        RequestStructure requestStructure = new RequestStructure ();
-        String query = requestStructure.quest ();
-
-        ResultSet res=stmt.executeQuery (query);
+        //получаем итоговый запрос к БД и выполняем его
+        ResultSet res = stmt.executeQuery (requestStructure.quest ());
 
         // полученный ответ сохраняем в мапу
-        int a = 1;
-        while(res.next()){
+        Integer a = 1;
+        while(res.next ()){
             Responseline responseline = new Responseline(res.getString(1), res.getString(2),
                     res.getString(3), res.getString(4), res.getString(5),
                     res.getString(6), res.getString(7), res.getString(8),
@@ -40,7 +41,7 @@ public class ConnectStendFath {
             a++;
         }
         // закрываем соединение
-        con.close();
+        con.close ();
         return mapResponce;
     }
 }
