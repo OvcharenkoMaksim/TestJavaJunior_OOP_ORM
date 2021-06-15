@@ -10,7 +10,7 @@ public class ValidatorArgumentIdDB extends ValidatorArgumentFath {
     //цель класса - принять Идентификаторы БД в качестве прараметра запроса, выполнить валидацию вводимых значений и удалить
     // возможные дубли
 
-    // ввод идентификаторов БД
+    // ввод идентификаторов БД, , переопределение метода и добавление валидации данных
     @Override
     protected ArrayList <String> populatingArgumentList () throws IOException {
         ArrayList <String> list = new ArrayList <> ();

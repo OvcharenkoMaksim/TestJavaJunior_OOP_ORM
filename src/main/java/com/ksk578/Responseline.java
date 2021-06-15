@@ -18,6 +18,8 @@ public class Responseline {
     String globalID;
     String orgID;
     String docID;
+
+    //конструктор создающий объект для хранения строки ответа от БД и инициирующий знгачения полей объекта при создании
     public Responseline (String creationDate, String systName, String document, String globStatus, String systNameGlobStatus,
             String svr, String organization, String globStat, String lokStat, String globVersion, String lockVersion,
             String databaseID, String globalID, String orgID, String docID) {

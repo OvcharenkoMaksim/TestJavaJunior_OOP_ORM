@@ -9,13 +9,13 @@ public class RequestStructure {
     protected String select;
     Introducer intr;
 
+    //сеттер получения ссылки на объект, отвечающий за выбор параметра отбора записей в БД и его значения
     public void setIntr (Introducer intr) {
         this.intr = intr;
     }
 
     //формирование итогового запроса к БД
     protected String quest () throws IOException {
-
         String sel1 = "select w.createdate \"Дата создания\", d.SYSTEMNAME \"Сист имя\", d.NAME \"Документ\",  " +
                 "g.DESCRIPTION \"Глоб статус\", g.systemname \"Сист имя глоб статуса\", o.SYSTEMNAME \"СВР\", " +
                 "o.NAME \"Организация\", w.docstateid \"Глоб стат\", r.localdocstateid \"Лок стат\", " +

@@ -15,6 +15,7 @@ public class Introducer {
     ValidatorArgumentGuid validatorArgumentGuid;
     ValidatorArgumentIdDB validatorArgumentIdDB;
 
+    //сеттеры получения ссылок на бины объектов, выполняющих ввод и валидацию параметров отбора записей в БД
     public void setValidatorArgumentGuid (ValidatorArgumentGuid validatorArgumentGuid) {
         this.validatorArgumentGuid = validatorArgumentGuid;
     }
@@ -52,6 +53,7 @@ public class Introducer {
         }
         return selectionParameter;
     }
+
     protected ArrayList <String> getList () {
         return list;
     }

@@ -14,7 +14,7 @@ public class ValidatorArgumentFath {
     // в наследниках, наследуется в оригинальном виде
 
     //базовая, рабочая реализация метода по  вводу аргумента в запрос к БД,
-    // метод требует переопределения в наследниках, приводится некоторая базовая часть реализации
+    // метод требует переопределения в наследниках, приводится базовая часть реализации
     protected ArrayList <String> populatingArgumentList () throws IOException {
         ArrayList <String> list = new ArrayList <> ();
         System.out.println ("Введите аргумент");

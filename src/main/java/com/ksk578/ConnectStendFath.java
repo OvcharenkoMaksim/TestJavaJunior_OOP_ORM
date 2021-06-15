@@ -12,11 +12,12 @@ public class ConnectStendFath {
 
     // подключаемся к БД выбранной площадки по поданным аргументам
     public LinkedHashMap<Integer, Responseline> connectBdUfos (String url, String username, String password, RequestStructure requestStructure)
-            throws SQLException, ClassNotFoundException, IOException {
+            throws SQLException, IOException {
         LinkedHashMap <Integer,Responseline> mapResponce = new LinkedHashMap <> ();
 
         // загрузка драйвера и выполнение подключения к БД
-        Class.forName ("org.postgresql.Driver");
+        //Class.forName ("org.postgresql.Driver");
+        //Class.forName("oracle.jdbc.OracleDriver");
         Connection con= DriverManager.getConnection (url, username, password);
         Statement stmt=con.createStatement ();
 

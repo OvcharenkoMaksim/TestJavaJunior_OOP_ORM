@@ -10,8 +10,8 @@ public class ValidatorArgumentGuid extends ValidatorArgumentFath {
     //цель класса - принять guid в качестве параметра запроса, выполнить валидацию вводимых значений и удалить возможные
     // дубли
 
+    //ввод гуидов, переопределение метода и добавление валидации данных
     @Override
-    //ввод гуидов
     protected ArrayList <String> populatingArgumentList () throws IOException {
         ArrayList <String> list = new ArrayList <> ();
         System.out.println ("Введите guid в произвольном порядке:");

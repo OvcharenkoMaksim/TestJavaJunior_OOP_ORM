@@ -10,12 +10,13 @@ public class Connect {
     // цель класса - реализовать запрос и получить в итоге карту объектов с данными полей запроса. Из данной карты
     // сформировать выводимый пользователю ответ на запрос.
 
-    ConnectTest connectTest;
-    ConnectDemo connectDemo;
-    ConnectRls connectRls;
+    private ConnectTest connectTest;
+    private ConnectDemo connectDemo;
+    private ConnectRls connectRls;
     String stend;
     LinkedHashMap <Integer, Responseline> mapResponce = new LinkedHashMap <> ();
 
+    //сеттеры получения ссылок на бины объектов классов подключения к БД стендов
     public void setConnectTest(ConnectTest connectTest) {
         this.connectTest = connectTest;
     }
@@ -29,7 +30,7 @@ public class Connect {
     }
 
     // выбор стенда, к БД которого делаем запрос
-    protected String databaseSelection () throws IOException, SQLException, ClassNotFoundException {
+    String databaseSelection () throws IOException, SQLException, ClassNotFoundException {
         System.out.println ("Выберите стенд к БД которого выполняем подключение: \n TSE-TEST - 1 \n TSE-DEMO - 2 \n TSE-RLS - 3 ");
         BufferedReader reader = new BufferedReader (new InputStreamReader (System.in));
         int standSelection = Integer.parseInt (reader.readLine());
@@ -46,7 +47,7 @@ public class Connect {
                 a++;
             }
         }
-            // запуск подключения к БД стенда
+            // запуск подключения к БД выбранного стенда
             if (standSelection == 1) {
                 stend = "TSE-TEST";
                 mapResponce.putAll (connectTest.connectBdUfos ());
@@ -61,6 +62,7 @@ public class Connect {
             }
         return stend;
     }
+
         protected LinkedHashMap <Integer, Responseline> getMapResponce () {
                 return mapResponce;
         }
