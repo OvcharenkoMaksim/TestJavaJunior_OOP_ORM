@@ -30,7 +30,7 @@ public class Connect {
     }
 
     // выбор стенда, к БД которого делаем запрос
-    String databaseSelection () throws IOException, SQLException, ClassNotFoundException {
+    protected String databaseSelection () throws IOException, SQLException, ClassNotFoundException {
         System.out.println ("Выберите стенд к БД которого выполняем подключение: \n TSE-TEST - 1 \n TSE-DEMO - 2 \n TSE-RLS - 3 ");
         BufferedReader reader = new BufferedReader (new InputStreamReader (System.in));
         int standSelection = Integer.parseInt (reader.readLine());

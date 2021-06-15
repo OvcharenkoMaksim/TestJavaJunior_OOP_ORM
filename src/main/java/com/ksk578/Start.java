@@ -16,6 +16,7 @@ public class Start {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         RequestSubmission requestSubmission = context.getBean("requestSubmissionBean", RequestSubmission.class);
         requestSubmission.presentingRequestScreen();
+        context.close();
 
         //сообщение о успешном завершении программы
         System.out.println ( "\nРабота программы завершена успешно." );
