@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class ValidatorArgumentGuid extends ValidatorArgumentFath {
     //цель класса - принять guid в качестве параметра запроса, выполнить валидацию вводимых значений и удалить возможные
     // дубли
+    String guid;
 
     //ввод гуидов, переопределение метода и добавление валидации данных
     @Override
@@ -16,8 +17,7 @@ public class ValidatorArgumentGuid extends ValidatorArgumentFath {
         ArrayList <String> list = new ArrayList <> ();
         System.out.println ("Введите guid в произвольном порядке:");
         BufferedReader reader = new BufferedReader (new InputStreamReader (System.in));
-        String guid;
-        while (true) {
+        for (int i = 0; i < 5000; i++) {
             guid = reader.readLine ();
             if (guid.length () == 0) break;
             if (guid.length () == 36) {

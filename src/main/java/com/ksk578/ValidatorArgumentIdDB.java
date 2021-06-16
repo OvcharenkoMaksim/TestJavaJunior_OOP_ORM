@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class ValidatorArgumentIdDB extends ValidatorArgumentFath {
     //цель класса - принять Идентификаторы БД в качестве прараметра запроса, выполнить валидацию вводимых значений и удалить
     // возможные дубли
+    String idBD;
 
     // ввод идентификаторов БД, , переопределение метода и добавление валидации данных
     @Override
@@ -16,8 +17,7 @@ public class ValidatorArgumentIdDB extends ValidatorArgumentFath {
         ArrayList <String> list = new ArrayList <> ();
         System.out.println ("Введите Идентификаторы БД в произвольном порядке:");
         BufferedReader reader = new BufferedReader (new InputStreamReader (System.in));
-        String idBD;
-        while (true) {
+        for (int i = 0; i < 5000; i++) {
             idBD = reader.readLine ();
             if (idBD.length () == 0) break;
             if (idBD.length () >= 19) {
